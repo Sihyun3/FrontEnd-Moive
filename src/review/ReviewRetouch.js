@@ -1,0 +1,112 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import style from './ReviewDetail.module.css';
+
+function ReviewRetouch({match, history}) {
+
+    const [title, setTitle] = useState('');
+    const [contents, setContents] = useState('');
+    const [writer, setWriter] = useState('');
+    const [reviewDate, setReviewDate] = useState('');
+    const [count, setCount] = useState('');
+    const [movieTitle, setMovieTitle] = useState('');
+
+    const { reviewIdx } = match.params;
+
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/movie/review/detail/${reviewIdx}`)
+            .then(response => {
+                console.log(response);
+                setTitle(response.data.selectReviewList.title);
+                setContents(response.data.selectReviewList.contents);
+                setWriter(response.data.selectReviewList.writer);
+                setReviewDate(response.data.selectReviewList.reviewDate);
+                setCount(response.data.selectReviewList.count);
+                setMovieTitle(response.data.movieTitle.title);
+            })
+            .catch(error => console.log(error));
+    }, []);
+
+    const handlerClickUpdate = () => {
+        axios.put(`http://localhost:8080/movie/review/detail/${reviewIdx}`,  // 요청 URL
+                    { "title": title, "contents": contents })           // 요청 본문을 통해서 서버로 전달할 값
+            .then(response => {                                         // 200번대 응답코드가 반환되는 경우
+                console.log(response);
+                if (response.data === 1) {                              // 수정 결과에 대한 메시지 처리
+                    alert('정상적으로 수정되었습니다.');
+                } else { 
+                    alert('수정에 실패했습니다.');
+                    return;
+                }
+            })
+            .catch(error => {                                           // 200번대를 제외한 응답코드가 반환되는 경우
+                console.log(error);
+                alert(`수정에 실패했습니다. (${error.message})`);
+                return;
+            });
+    };
+    const handlerChange= (e)=>{
+        setTitle(e.target.value)
+    }
+    const handlercontents= (e)=>{
+        setContents(e.target.value)
+    }
+    return (
+        <>
+            <div className={style.container}>
+                {/* <h2>리뷰 상세</h2> */}
+
+                    <table className={style.reviewDetail}>
+                        <colgroup>
+                            <col width="15%" />
+                            <col width="" />
+                            <col width="15%" />
+                            <col width="" />
+                            <col width="15%" />
+                            <col width="" />
+                        </colgroup>
+                        <tbody>
+                            <tr >
+                                <th colSpan="6">제목</th>
+                            </tr>
+                            <tr>
+                                <td colSpan="6">
+                                <input type="text" value={title} onChange={handlerChange}></input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th colSpan="6">관람한 영화</th>                   
+                            </tr> 
+                            <tr>
+                                <td colSpan="6">
+                                    {movieTitle}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th className={style.borderRight} >조회수</th>
+                                <td>{count}</td>
+                                <th className={style.borderRight} >작성일</th>
+                                <td>{reviewDate}</td>
+                                <th className={style.borderRight} >작성자</th>
+                                <td>{writer}</td>
+                            </tr>
+
+                            <tr>
+                                <td className={style.contentText} colSpan="6">
+                                   <textarea style={{width:"1000px",height:"500px"}} onChange={handlercontents} value={contents}></textarea> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                <div className={style.btnBox}>
+                    <input type="button" id="edit" className={style.btn} value="확인" onClick={handlerClickUpdate} />
+                </div>
+
+
+            </div>
+        </>
+    )
+}
+
+export default ReviewRetouch;
