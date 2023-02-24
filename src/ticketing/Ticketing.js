@@ -96,7 +96,7 @@ function Ticketing({history}) {
                 </div>
                                
             {
-                selectDate != '' && movieIdx != '' &&<Seating2
+                selectDate != '' && movieIdx != '' &&<Seating2 history={history}
                  setSelectSeat={setSelectSeat} movieIdx={movieIdx} selectDate={selectDate} reservedSeat={reservedSeat} selectSeat={selectSeat}
                  />
              

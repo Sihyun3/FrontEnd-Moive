@@ -7,7 +7,7 @@ import { TbSquare5 } from 'react-icons/tb';
 import axios from "axios";
 import './seating2.css';
 
-function Seating2({reservedSeat,setSelectSeat,selectSeat,movieIdx,selectDate}) {
+function Seating2({reservedSeat,setSelectSeat,selectSeat,movieIdx,selectDate,history}) {
 
     const post=()=>{
     
@@ -19,11 +19,8 @@ function Seating2({reservedSeat,setSelectSeat,selectSeat,movieIdx,selectDate}) {
 
     )
             .then(respone => {
-                if(respone.data){
-                  
-                }else{
-               
-                }
+                alert("정상 처리 되었습니다")
+                history.push('/')
             })    
             .catch(error=>{
           
