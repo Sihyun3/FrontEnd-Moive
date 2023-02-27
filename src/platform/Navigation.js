@@ -22,8 +22,7 @@ function Navigation({isLogin,setIsLogin}) {
     },[isLogin]);
 
     useEffect(()=>{
-       if(sessionStorage.getItem('token') != null)
-    {
+       if(sessionStorage.getItem('token') != null){
         setState('login')
         }else if(sessionStorage.getItem('token') == null){
         setState('logout')

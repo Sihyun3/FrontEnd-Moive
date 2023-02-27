@@ -40,7 +40,7 @@ const handlerMovie = (e) => {
     axios.post(`http://localhost:8080/api/inserttime`,{movieIdx,canReservationDate:time})
     .then(r=>{
       if(r.data = 1 ){
-        alert("삭제 되었습니다.")
+        alert("정상 처리 되었습니다.")
       }
     })
   }
@@ -148,7 +148,7 @@ const handlerMovie = (e) => {
     axios.post("http://localhost:8080/api/insertannouncement",{"title":noticeTitle, "contents":noticeContents})
     .then(r=>{
       if(r.data = 1 ){
-        alert("삭제 되었습니다.")
+        alert("정상 처리 되었습니다.")
       }
     })
   }

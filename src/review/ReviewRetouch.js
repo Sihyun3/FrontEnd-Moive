@@ -33,12 +33,8 @@ function ReviewRetouch({match, history}) {
                     { "title": title, "contents": contents })           // 요청 본문을 통해서 서버로 전달할 값
             .then(response => {                                         // 200번대 응답코드가 반환되는 경우
                 console.log(response);
-                if (response.data === 1) {                              // 수정 결과에 대한 메시지 처리
-                    alert('정상적으로 수정되었습니다.');
-                } else { 
-                    alert('수정에 실패했습니다.');
-                    return;
-                }
+                alert("정상처리 되었습니다.")
+                history.push('/reviewlist')
             })
             .catch(error => {                                           // 200번대를 제외한 응답코드가 반환되는 경우
                 console.log(error);

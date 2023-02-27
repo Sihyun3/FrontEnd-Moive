@@ -11,7 +11,6 @@ import Signup from './register/SignUp'
 import TicketingCheck from './ticketing/TicketingCheck';
 import TicketingCheckList from './ticketing/TicketingCheckList';
 import Admin from './example/Admin'
-import Rating from './example/Rating';
 import ReviewDetail from './review/ReviewDetail';
 import ReviewParts1 from './review/ReviewParts1';
 import { useState,useEffect } from 'react';
