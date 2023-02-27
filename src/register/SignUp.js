@@ -110,12 +110,12 @@ const SignUp = ({history}) => {
                         </div>
                         <div className={`${style.loginInputPh} ${style.floatLeft} ${style.input}`}>
                             <h3>전화번호</h3>
-                            <input type="text" value={phoneNumber} onChange={changePhone} className={style.userPhoneNumber} placeholder="전화번호를 입력하세요" />
+                            <input type="text" value={phoneNumber} onChange={changePhone} className={style.userPhoneNumber} placeholder="ex)010-0000-0000" />
                             <div>{Pmessage}</div>
                         </div>
                         <div className={`${style.loginInputEmail} ${style.floatRight} ${style.input}`}>
                             <h3>이메일</h3>
-                            <input type="email" value={userEmail} onChange={handlerChangeEmail} className={style.userEmail} placeholder="이메일을 입력하세요" />
+                            <input type="email" value={userEmail} onChange={handlerChangeEmail} className={style.userEmail} placeholder="ex)exapmle@example.com" />
                             <div>{Emassage}</div>
                         </div>                       
                     </form>
