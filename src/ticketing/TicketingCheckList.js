@@ -63,10 +63,10 @@ function TicketingCheckList({history}) {
                                 <br />
                                 <li>관람 일시: {reservationDto.reservationDate}</li>
                                 <br />
-                                <li>좌석 : 
-                                {seat.map((n)=>
+                                <li>좌석: 
+                                 {seat.map((n)=>
                                     (
-                               <span>{n.reservedSeat} </span>)                   
+                                <span> {n.reservedSeat} </span>)                   
                                 )}
                                 </li>
                                 <br />

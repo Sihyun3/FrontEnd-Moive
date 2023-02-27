@@ -18,10 +18,9 @@ function Admin({history}) {
   }
   const token = sessionStorage.getItem('token')
   const decode = jwtDecode(token);
-  
- 
   if(decode.sub != "test"){
-    alert('잘못된 접근 입니다.')
+    alert('잘못된 접근 입니다.');
+    // console.log("aaaaaaaaaaaaaa")
     history.push('/')
   }
     axios.get(`http://localhost:8080/api/movie`,)
@@ -119,7 +118,7 @@ const handlerMovie = (e) => {
     })
     .then(response => {
       console.log(response);
-      alert(`${response.data}\n정상적으로 업로드했습니다.`);
+      alert(`${response.data}\n정상적으로 업로드했습니다.`); 
     })  
     .catch(error => {
       console.log(error);

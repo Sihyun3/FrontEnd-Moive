@@ -47,7 +47,7 @@ function Notice() {
                             )
                         }
                         {
-                            datas && datas.map(n => (
+                            datas && datas.sort((a, b) => (b.announcementIdx - a.announcementIdx)).map(n => (
                                 <tr key={n.id}>
                                     <td className={style.idx}>{n.announcementIdx}</td>
 

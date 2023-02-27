@@ -51,12 +51,7 @@ const MovieDetail = ({ match }) => {
         axios.post(`http://localhost:8080/api/movie/comments/write/${movieIdx}`, { "writer":nickName, contents, star: parseInt(rating) })
             .then(response => {
                 console.log(response);
-                if (response.data != null) {
                     alert('코맨트가 정상적으로 등록되었습니다')
-                } else {
-                    alert('코맨트 등록에 실패했습니다')
-                    return;
-                }
             })
             .catch(error => {
                 console.log(error);

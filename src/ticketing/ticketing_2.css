@@ -3,12 +3,15 @@
 .box1 {
     margin: 0 auto;
     width: 1180px;
+    margin-top: 120px;
 }
 .box1-1 {
     border: 1px solid; 
     border-color: rgba(217, 217, 217, 1);
-    margin-top: 150px;
+    margin-top: 70px;
     margin-bottom: 100px;
+    box-shadow: 2px 2px 8px 0px #4643f496;
+    border-radius: 20px;
 }
 
 .confirmation .box1 h2 {
