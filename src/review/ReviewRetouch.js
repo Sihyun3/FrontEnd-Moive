@@ -24,7 +24,9 @@ function ReviewRetouch({match, history}) {
                 setReviewDate(response.data.selectReviewList.reviewDate);
                 setCount(response.data.selectReviewList.count);
                 setMovieTitle(response.data.movieTitle.title);
-                if(response.data.userDto.userId !=  response.data.movieTitle.writerId || response.data.userDto.userId != "test" ){
+                console.log(response.data.userDto.userId)
+                console.log(response.data.movieTitle.writerId);
+                if(response.data.userDto.userId !=  response.data.selectReviewList.writerId || response.data.userDto.userId != "test" ){
                   alert('잘못된 접근 입니다.');
                   history.push('/reviewlist')
                 }
