@@ -20,10 +20,13 @@ function Ticketing({history}) {
     const [selectDate, setSelectDate] = useState('');
     const [selectSeat, setSelectSeat] = useState([]);
     useEffect(() => {
-        if(!sessionStorage.getItem('token')){
-            history.push('/login');
-        }
-        axios.get(`http://localhost:8080/api/movie`,)
+        if (!sessionStorage.getItem('token')) {
+      alert("로그인 후 이용해 주세요")
+      history.push("/login");
+      return;
+    }
+        axios.get(`http://localhost:8080/api/movie`,
+        { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 console.log(response.data)
                 setData(response.data);
@@ -35,7 +38,8 @@ function Ticketing({history}) {
     }, []);
     const handlerMovie = (e) => {
         e.preventDefault();
-        axios.get(`http://localhost:8080/api/reservationdate/${e.target.value}`,)
+        axios.get(`http://localhost:8080/api/reservationdate/${e.target.value}`,
+        { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 console.log(response.data)
                 setDate(response.data);
@@ -47,7 +51,8 @@ function Ticketing({history}) {
     const handlerDate = (e) => {
         console.log(e.target.value);
         e.preventDefault();
-        axios.get(`http://localhost:8080/api/reservedseat/${e.target.value}`,)
+        axios.get(`http://localhost:8080/api/reservedseat/${e.target.value}`, 
+         { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 setReservedSeat(response.data);
                 setSelectDate(e.target.value);

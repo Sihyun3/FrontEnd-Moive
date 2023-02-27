@@ -15,10 +15,12 @@ function ReviewDetail({match, history}) {
 
 
     useEffect(() => {
-        if(!sessionStorage.getItem('token')){
-            history.push('/login');
-        }
-        axios.get(`http://localhost:8080/movie/review/detail/${reviewIdx}`)
+        if (!sessionStorage.getItem('token')) {
+            alert("로그인 후 이용해 주세요")
+            history.push("/login");
+            return;
+          }
+        axios.get(`http://localhost:8080/movie/review/detail/${reviewIdx}`,  { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 console.log(response);
                 setTitle(response.data.selectReviewList.title);

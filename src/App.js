@@ -1,25 +1,24 @@
 
 import './App.css';
 import { Route } from 'react-router-dom';
-import Reservation from './example/Reservation';
 import Navigation from './platform/Navigation';
 import Footer from './platform/Footer';
 import Mainpage from './mainpage/Mainpage';
 import Login from './login/Login';
 import MovieDetail from './moviedetail/MovieDetail';
 import Signup from './register/SignUp'
-import TicketingCheck from './ticketing/TicketingCheck';
+
 import TicketingCheckList from './ticketing/TicketingCheckList';
 import Admin from './example/Admin'
 import ReviewDetail from './review/ReviewDetail';
 import ReviewParts1 from './review/ReviewParts1';
 import { useState,useEffect } from 'react';
 import Ticketing from './ticketing/Ticketing';
-import ReviewList from './review/ReviewList';
 import ReviewWrite from './review/ReviewWrite';
 import Notice from './Notice/Notice';
 import NoticeDetail from './Notice/NoticeDetail';
 import ReviewRetouch from './review/ReviewRetouch'
+
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   return (
@@ -33,8 +32,7 @@ function App() {
       <Route path="/register" component={Signup} exact={true} />
       {/* 영화 상세 */}
       <Route path="/moviedetail/:movieIdx" component={MovieDetail} exact={true} />
-      {/* 예약 확인 */}
-      <Route path="/reservationconfirm" component={TicketingCheck} exact={true} />
+
       {/* 리뷰 디테일 */}
       <Route path='/reviewdetail/:reviewIdx' component={ReviewDetail} exact={true} />
       {/* 리뷰 리스트 */}

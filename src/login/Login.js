@@ -17,7 +17,7 @@ const Login = ({history, setIsLogin}) => {
                     sessionStorage.setItem("token",respone.data);
                     setIsLogin(true);
                     console.log("로그인 세팅완료");
-                    history.push('/');
+                    history.goBack();
                 }else{
                     alert('id, pw가 일치하지 않습니다')
                     sessionStorage.clear();

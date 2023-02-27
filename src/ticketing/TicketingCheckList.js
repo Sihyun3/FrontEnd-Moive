@@ -10,9 +10,11 @@ function TicketingCheckList({history}) {
     const [reservationDto, setReservationDto] = useState({});
     const [seat,setSeat] = useState([]);
     useEffect(() => {
-        if(!sessionStorage.getItem('token')){
-            history.push('/login');
-        }
+        if (!sessionStorage.getItem('token')) {
+            alert("로그인 후 이용해 주세요")
+            history.push("/login");
+            return;
+          }
         axios.get(`http://localhost:8080/api/checkreservationlist/`,
         { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
@@ -20,9 +22,7 @@ function TicketingCheckList({history}) {
                 setData(response.data);
             })
             .catch(error => console.log(error));
-            // if(sessionStorage.getitem('token') == null){
-            //     history.push('/loign');
-            // }
+     
     }, []);
 
     const selectReservationIdx= (e) =>{

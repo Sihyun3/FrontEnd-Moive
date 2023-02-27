@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import style from './ReviewDetail.module.css';
-
+import jwtDecode from 'jwt-decode';
 function ReviewRetouch({match, history}) {
 
     const [title, setTitle] = useState('');
@@ -15,22 +15,35 @@ function ReviewRetouch({match, history}) {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/movie/review/detail/${reviewIdx}`)
+        axios.get(`http://localhost:8080/movie/review/detail/${reviewIdx}`,
+        { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
-                console.log(response);
                 setTitle(response.data.selectReviewList.title);
                 setContents(response.data.selectReviewList.contents);
                 setWriter(response.data.selectReviewList.writer);
                 setReviewDate(response.data.selectReviewList.reviewDate);
                 setCount(response.data.selectReviewList.count);
                 setMovieTitle(response.data.movieTitle.title);
+                if(response.data.userDto.userId !=  response.data.movieTitle.writerId || response.data.userDto.userId != "test" ){
+                  alert('잘못된 접근 입니다.');
+                  history.push('/reviewlist')
+                }
+                // const token = sessionStorage.getItem('token')
+                // const decode = jwtDecode(token);
+              
+                // if (decode.sub != response.data.movieTitle.writerId || decode.sub != "test") {
+                //   alert('잘못된 접근 입니다.');
+                //   history.push('/')
+                // }
             })
             .catch(error => console.log(error));
     }, []);
 
+  
     const handlerClickUpdate = () => {
-        axios.put(`http://localhost:8080/movie/review/detail/${reviewIdx}`,  // 요청 URL
-                    { "title": title, "contents": contents })           // 요청 본문을 통해서 서버로 전달할 값
+        axios.put(`http://localhost:8080/movie/review/update/${reviewIdx}`,  // 요청 URL
+                    { "title": title, "contents": contents },
+                    { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })           // 요청 본문을 통해서 서버로 전달할 값
             .then(response => {                                         // 200번대 응답코드가 반환되는 경우
                 console.log(response);
                 alert("정상처리 되었습니다.")

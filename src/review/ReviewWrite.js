@@ -12,9 +12,11 @@ function ReviewWrite({history,match}) {
 
 
   useEffect(() => {
-    if(!sessionStorage.getItem('token')){
-      history.push('/login');
-  }
+  if (!sessionStorage.getItem('token')) {
+      alert("로그인 후 이용해 주세요")
+      history.push("/login");
+      return;
+    }
     axios.get(`http://localhost:8080/api/movie`,)
         .then(response => {
             setData(response.data);
@@ -36,8 +38,10 @@ function ReviewWrite({history,match}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      axios.post(`http://localhost:8080/api/movie/review/write/`,    {"title":name,"contents":contents,"movieIdx":movieIdx},
-      { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
+      axios.post(`http://localhost:8080/api/movie/review/write/`,    
+       {"title":name,"contents":contents,"movieIdx":movieIdx}, 
+       { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } }
+    )
       .then(response =>{
         console.log(response)
           alert("정상처리 되었습니다");

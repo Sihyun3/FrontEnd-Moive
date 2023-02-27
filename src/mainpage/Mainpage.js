@@ -19,7 +19,6 @@ function Mainpage() {
     useEffect(() => {
         axios.get(`http://localhost:8080/api/mainpage`,)
             .then(response => {
-                console.log(response.data)
                 setAnnoucement(response.data.announcementList);
                 setMovie(response.data.listMovie)
             })
@@ -37,7 +36,7 @@ function Mainpage() {
         setSortType('opening');
    
     }
-    const orderedDate = movie.sort((a, b) =>{ console.log(new Date(a.opening)) ;return(new Date(a.opening) - new Date(b.opening))})
+    const orderedDate = movie.sort((a, b) =>{;return(new Date(a.opening) - new Date(b.opening))})
     return (
         <>
             <div className="main-banner">

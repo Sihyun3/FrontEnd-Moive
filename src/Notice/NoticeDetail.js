@@ -13,9 +13,6 @@ function NoticeDetail({ match}) {
         history.goBack();
     }
 
-    useEffect(() => {
-        console.log(match.params)
-    })
 
     useEffect(() => {
         axios.get(`http://localhost:8080/api/Announcement/${announcementIdx}`)
