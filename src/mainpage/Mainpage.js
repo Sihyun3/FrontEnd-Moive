@@ -36,6 +36,7 @@ function Mainpage() {
         setSortType('opening');
    
     }
+    
     const orderedDate = movie.sort((a, b) =>{;return(new Date(a.opening) - new Date(b.opening))})
     return (
         <>

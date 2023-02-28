@@ -19,7 +19,7 @@ function Seating2({reservedSeat,setSelectSeat,selectSeat,movieIdx,selectDate,his
 
     )
             .then(respone => {
-                alert("정상 처리 되었습니다")
+                alert("예매가 완료 되었습니다")
                 history.push('/')
             })    
             .catch(error=>{

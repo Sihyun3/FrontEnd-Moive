@@ -10,11 +10,11 @@ function TicketingCheckList({history}) {
     const [reservationDto, setReservationDto] = useState({});
     const [seat,setSeat] = useState([]);
     useEffect(() => {
-        if (!sessionStorage.getItem('token')) {
-            alert("로그인 후 이용해 주세요")
-            history.push("/login");
-            return;
-          }
+      if (!sessionStorage.getItem('token')) {
+      alert("로그인 후 이용해 주세요")
+      history.push("/login");
+      return;
+    }
         axios.get(`http://localhost:8080/api/checkreservationlist/`,
         { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
@@ -37,6 +37,9 @@ function TicketingCheckList({history}) {
             console.log(seat);
         })
         .catch(error=> console.log(error))
+    }
+    const abcd =()=>{
+        history.push('/')
     }
     return (
         <>
@@ -77,7 +80,7 @@ function TicketingCheckList({history}) {
                                 <li>휴대번호: {reservationDto.reservationNumber}</li>
                             </ul>
                         </div>
-                        <button className="confirmation-btn">확인</button>
+                        <button onClick={abcd} className="confirmation-btn">확인</button>
                     </div>
                 </div>
 
