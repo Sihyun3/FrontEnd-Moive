@@ -25,10 +25,14 @@ function ReviewRetouch({match, history}) {
                 setCount(response.data.selectReviewList.count);
                 setMovieTitle(response.data.movieTitle.title);
                 console.log(response.data.userDto.userId)
-                console.log(response.data.movieTitle.writerId);
-                if(response.data.userDto.userId !=  response.data.selectReviewList.writerId || response.data.userDto.userId != "test" ){
+                console.log(response.data.selectReviewList.writerId);
+                console.log( response.data.userDto.userId != "test" );
+                console.log(response.data.userDto.userId !=  response.data.selectReviewList.writerId)
+               
+                if(response.data.userDto.userId !=  response.data.selectReviewList.writerId && response.data.userDto.userId != "test"){
                   alert('잘못된 접근 입니다.');
                   history.push('/reviewlist')
+                  return;
                 }
                 // const token = sessionStorage.getItem('token')
                 // const decode = jwtDecode(token);

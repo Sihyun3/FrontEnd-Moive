@@ -52,6 +52,7 @@ const MovieDetail = ({ match }) => {
             .then(response => {
                 console.log(response);
                     alert('코맨트가 정상적으로 등록되었습니다')
+                 
             })
             .catch(error => {
                 console.log(error);
