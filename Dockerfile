@@ -1,3 +1,12 @@
+FROM ubuntu
+RUN apt update
+RUN apt install -y git
+RUN mkdir /my-app
+WORKDIR /my-app
+ARG     GIT_REPOSITORY_ADDRESS
+RUN git  clone $GIT_REPOSITORY_ADDRESS
+
+
 FROM    node  AS builder
 RUN     mkdir /my-app
 WORKDIR /my-app
