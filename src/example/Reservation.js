@@ -7,7 +7,7 @@ function Reservation({ history }) {
     const [seat, setSeat] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/movie`,)
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/movie`,)
             .then(response => {
                 console.log(response.data)
                 setMovieIdx(response.data);
@@ -15,7 +15,7 @@ function Reservation({ history }) {
             .catch(error => console.log(error));
     }, []);
     const handlerMovie=(e) => {
-        axios.get(`http://localhost:8080/api/reservationdate/${e.target.value}`,)
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/reservationdate/${e.target.value}`,)
             .then(response => {
                 console.log(response.data);
                 setDates(response.data);
@@ -24,7 +24,7 @@ function Reservation({ history }) {
     };
 
     const handlerdate= (e)=>{
-        axios.get(`http://localhost:8080/api/reservation/${e.target.value}`)
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/reservation/${e.target.value}`)
             .then(response=>{
                 console.log(e.target.value);
                 console.log(response.data);
