@@ -1,16 +1,15 @@
-FROM ubuntu AS ubuntu
+FROM ubuntu AS git
 RUN apt update
 RUN apt install -y git
 RUN mkdir /my-app
 WORKDIR /my-app
-ARG     GIT_REPOSITORY_ADDRESS
-RUN git  clone $GIT_REPOSITORY_ADDRESS
+RUN git  clone https://github.com/Sihyun3/FrontEnd-Moive.git    
 
 
 FROM    node  AS builder
 RUN     mkdir /my-app
 WORKDIR /my-app
-COPY    --from=ubuntu /my-app/FrontEnd-Movie ./
+COPY    --from=git /my-app/FrontEnd-Moive/ .
 ARG     REST_API_SERVER_IP               
 ARG     REST_API_SERVER_PORT          
 RUN     echo REACT_APP_IP=$REST_API_SERVER_IP > .env     
