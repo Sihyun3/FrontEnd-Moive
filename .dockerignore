@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 .gitignore
 Dockerfile
 package-lock.json
 *.md
 build
+=======
+.gitignore
+Dockerfile
+package-lock.json
+*.md
+build
+>>>>>>> 9293e13ae1be3b41c69ba0cd23231c76670ffdc5
 .node_modules
