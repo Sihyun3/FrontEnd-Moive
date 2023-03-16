@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM ubuntu AS ubuntu
 RUN apt update
 RUN apt install -y git
 RUN mkdir /my-app
@@ -10,7 +10,7 @@ RUN git  clone $GIT_REPOSITORY_ADDRESS
 FROM    node  AS builder
 RUN     mkdir /my-app
 WORKDIR /my-app
-COPY    . .
+COPY    --from=ubuntu /my-app/FrontEnd-Movie ./
 ARG     REST_API_SERVER_IP               
 ARG     REST_API_SERVER_PORT          
 RUN     echo REACT_APP_IP=$REST_API_SERVER_IP > .env     
