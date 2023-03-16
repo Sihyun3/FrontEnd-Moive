@@ -10,7 +10,7 @@ const Login = ({history, setIsLogin}) => {
 
     const handlerOnClick = e =>{
         e.preventDefault();
-        axios.post('http://localhost:8080/login',{userId,userPassword})
+        axios.post(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/login`,{userId,userPassword})
             .then(respone => {
                 if(respone.data){
                     alert('정상적으로 로그인되었습니다')

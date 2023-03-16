@@ -15,7 +15,7 @@ function TicketingCheckList({history}) {
       history.push("/login");
       return;
     }
-        axios.get(`http://localhost:8080/api/checkreservationlist/`,
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/checkreservationlist/`,
         { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 console.log(response.data)
@@ -28,7 +28,7 @@ function TicketingCheckList({history}) {
     const selectReservationIdx= (e) =>{
         e.preventDefault();
         setReservationIdx(e.target.value);
-        axios.get(`http://localhost:8080/api/checkreservation/${e.target.value}`,    
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/checkreservation/${e.target.value}`,    
         { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
         .then(response =>{
             setMovieDto(response.data.movieDto);
@@ -60,7 +60,7 @@ function TicketingCheckList({history}) {
                     <div className='box1-1'>
                         <h2>예매내역 확인</h2>
                         <div className="box2 cf">
-                        <img style={{width:"334px",height:"334px"}} src={"http://localhost:8080/img/"+movieDto.poster}/>
+                        <img style={{width:"334px",height:"334px"}} src={`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/img/`+movieDto.poster}/>
                             <ul>
                                 <li>예매 영화:  {movieDto.title}</li>
                                 <br />

@@ -40,3 +40,6 @@
 .btn {
     display:block; margin: 0 auto 30px; width:80px; height:40px; text-align:center; line-height: 40px; background:#8f86bb; color: snow; font-size:18px; border-radius: 10px;
 }
+.a{
+    white-space: pre-wrap; 
+}

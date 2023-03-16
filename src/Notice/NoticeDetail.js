@@ -15,7 +15,7 @@ function NoticeDetail({ match}) {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/Announcement/${announcementIdx}`)
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/Announcement/${announcementIdx}`)
             .then(response => {
                 console.log(response);
                 setNotice(response.data);
@@ -32,7 +32,7 @@ function NoticeDetail({ match}) {
             <div className={style.contentContainer}>
                 <h2>{notice.title}</h2>
                 <em>Date : {notice.announcementDate}</em>
-                <p>{notice.contents}</p>
+                <p className={style.a}>{notice.contents}</p>
             </div>
             <Link className={style.btn} to={`/annoucemount`}>목록</Link>
         </>

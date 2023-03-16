@@ -25,7 +25,7 @@ const MovieDetail = ({ match }) => {
 
     const handlerChangeNickName = e => setNickName(e.target.value);
     useEffect(() => {
-        axios.get(`http://localhost:8080/moviedetail/${movieIdx}`)
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/moviedetail/${movieIdx}`)
             .then(response => {
                 console.log(response.data.movieInfo.poster);
                 setTitle(response.data.movieInfo.title);
@@ -48,7 +48,7 @@ const MovieDetail = ({ match }) => {
     const handlerSubmit = e => {
         e.preventDefault();
 
-        axios.post(`http://localhost:8080/api/movie/comments/write/${movieIdx}`, { "writer":nickName, contents, star: parseInt(rating) })
+        axios.post(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/movie/comments/write/${movieIdx}`, { "writer":nickName, contents, star: parseInt(rating) })
             .then(response => {
                 console.log(response);
                     alert('코맨트가 정상적으로 등록되었습니다')
@@ -80,7 +80,7 @@ const MovieDetail = ({ match }) => {
 
                         {/* 영화 포스터 부분 (todo) */}
                         <div className="movie-left">
-                        <img style={{width:"280px",height:"400px"}} src={"http://localhost:8080/img/"+poster}/>
+                        <img style={{width:"280px",height:"400px"}} src={`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/img/`+poster}/>
                         </div>
 
                         <div className="movie-right">

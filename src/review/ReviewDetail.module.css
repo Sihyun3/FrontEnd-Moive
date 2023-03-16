@@ -9,7 +9,7 @@
     border-right: 2px solid #4643f431;
 }
 .reviewDetail td {text-align:center; font-size: 18px;}
-.reviewDetail .contentText {text-align:left; height: 600px; padding: 80px;    }
+.reviewDetail .contentText {text-align:left; height: 600px; padding: 80px;  white-space: pre-wrap;  }
 
 .btnBox {text-align: center;}
 

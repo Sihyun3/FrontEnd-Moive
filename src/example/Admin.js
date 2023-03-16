@@ -29,7 +29,7 @@ function Admin({ history,location }) {
       alert('잘못된 접근 입니다.');
       history.push('/')
     }
-    axios.get(`http://localhost:8080/api/movie`,)
+    axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/movie`,)
       .then(response => {
         setData(response.data);
       })
@@ -42,7 +42,7 @@ function Admin({ history,location }) {
 
   const handlerSettingTime = (e) => {
     e.preventDefault();
-    axios.post(`http://localhost:8080/api/inserttime`, { movieIdx, canReservationDate: time })
+    axios.post(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/inserttime`, { movieIdx, canReservationDate: time })
       .then(r => {
         if (r.data = 1) {
           alert("정상 처리 되었습니다.")
@@ -118,7 +118,7 @@ function Admin({ history,location }) {
   const handlerUploadDataWithFile = () => {
     axios({
       method: 'POST',
-      url: `http://localhost:8080/api/admin/insertmovie`,
+      url: `http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/admin/insertmovie`,
       headers: { 'Content-Type': 'multipart/form-data;' },
       data: formData
     })
@@ -133,7 +133,7 @@ function Admin({ history,location }) {
   };
   const handlerDelete = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:8080/api/deletemovie`, { movieIdx })
+    axios.put(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/deletemovie`, { movieIdx })
       .then(r => {
         if (r.data = 1) {
           alert("삭제 되었습니다.")
@@ -149,7 +149,7 @@ function Admin({ history,location }) {
 
   const handlerInsertNotice = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/api/insertannouncement", { "title": noticeTitle, "contents": noticeContents })
+    axios.post(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/insertannouncement`, { "title": noticeTitle, "contents": noticeContents })
       .then(r => {
         if (r.data = 1) {
           alert("정상 처리 되었습니다.")

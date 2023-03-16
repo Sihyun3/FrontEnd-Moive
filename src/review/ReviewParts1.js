@@ -7,7 +7,7 @@ function ReviewParts1() {
     const [movie, setMovie] = useState([]);
     const [review,setReview] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:8080/movie/review/list/`,)
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/movie/review/list/`,)
             .then(response => {
                 console.log(response.data)
                 setMovie(response.data.movieDto);

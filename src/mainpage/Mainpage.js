@@ -14,16 +14,15 @@ function Mainpage() {
     const [annoucement, setAnnoucement] = useState([]);
     const [movie, setMovie] = useState([]);
 
-
+    const image = `http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/getImage/`;
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/mainpage`,)
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/mainpage`,)
             .then(response => {
                 setAnnoucement(response.data.announcementList);
                 setMovie(response.data.listMovie)
             })
             .catch(error => console.log(error));
-        // 여기 안에는 별점순으로 디폴트 값을 잡고 하는걸로
     }, []);
 
     const [sortType, setSortType] = useState('star');
@@ -34,10 +33,9 @@ function Mainpage() {
 
     const handlerDate = () => {
         setSortType('opening');
-   
     }
     
-    const orderedDate = movie.sort((a, b) =>{;return(new Date(a.opening) - new Date(b.opening))})
+    const orderedDate = movie.sort((a, b) =>{return(new Date(a.opening) - new Date(b.opening))})
     return (
         <>
             <div className="main-banner">
@@ -63,7 +61,7 @@ function Mainpage() {
                                     index < 5 &&
                                     <SwiperSlide>
                                     <li className="listli" key={index}>
-                                        <Link to={`/moviedetail/${n.movieIdx}`}><img className="img1" src={"http://localhost:8080/img/"+n.poster}/>
+                                        <Link to={`/moviedetail/${n.movieIdx}`}><img className="img1" src={image +n.poster}/>
                                             <strong style={{ color: "snow" }}>{n.title}</strong><span style={{ color: "snow" }} >별점: {n.starAvg} / 개봉일: {n.opening}</span>
                                         </Link></li>
                                     </SwiperSlide>
@@ -76,7 +74,7 @@ function Mainpage() {
                                     index < 5 &&
                                     <SwiperSlide>
                                     <li className="listli" key={index}>
-                                        <Link to={`/moviedetail/${n.movieIdx}`}><img className="img1" src={"http://localhost:8080/img/"+n.poster} />
+                                        <Link to={`/moviedetail/${n.movieIdx}`}><img className="img1" src={image+n.poster} />
                                             <strong style={{ color: "snow" }}>{n.title}</strong><span style={{ color: "snow" }} >별점: {n.starAvg} / 개봉일: {n.opening}</span>
                                         </Link></li>
                                     </SwiperSlide>
@@ -97,10 +95,14 @@ function Mainpage() {
                     <h2>현재 상영작</h2>
                     <ul className="now-list cf"> {
                         movie.map((a, index) => (
-                            <li key={index}><Link to={`/moviedetail/${a.movieIdx}`}><img className="img2"src={"http://localhost:8080/img/"+a.poster} /><strong style={{ color: "black" }}>{a.title}</strong></Link></li>
+                            <li key={index}><Link to={`/moviedetail/${a.movieIdx}`}>
+                                <img className="img2"src={image +a.poster} />
+                                <strong style={{ color: "black" }}>{a.title}</strong>
+                                </Link>
+                                </li>
                         ))
                     }
-
+                    
                     </ul>
                 </div>
             </div>

@@ -17,7 +17,7 @@ function ReviewWrite({history,match}) {
       history.push("/login");
       return;
     }
-    axios.get(`http://localhost:8080/api/movie`,)
+    axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/movie`,)
         .then(response => {
             setData(response.data);
         })
@@ -38,7 +38,7 @@ function ReviewWrite({history,match}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-      axios.post(`http://localhost:8080/api/movie/review/write/`,    
+      axios.post(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/movie/review/write/`,    
        {"title":name,"contents":contents,"movieIdx":movieIdx}, 
        { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } }
     )

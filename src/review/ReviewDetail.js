@@ -20,7 +20,7 @@ function ReviewDetail({match, history}) {
             history.push("/login");
             return;
           }
-        axios.get(`http://localhost:8080/movie/review/detail/${reviewIdx}`,  { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/movie/review/detail/${reviewIdx}`,  { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 console.log(response);
                 setTitle(response.data.selectReviewList.title);
@@ -36,7 +36,7 @@ function ReviewDetail({match, history}) {
 
     const handlerClickList = () => history.push('/reviewlist');
     const handlerClickDelete = () => {
-        axios.delete(`http://localhost:8080/movie/review/delete/${reviewIdx}`  ,{ headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
+        axios.delete(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/movie/review/delete/${reviewIdx}`  ,{ headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {                                         
                 console.log(response);
               
@@ -94,7 +94,7 @@ function ReviewDetail({match, history}) {
                             </tr>
 
                             <tr>
-                                <td className={style.contentText} colSpan="6">
+                                <td  className={style.contentText} colSpan="6">
                                     {contents}
                                 </td>
                             </tr>

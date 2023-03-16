@@ -15,7 +15,7 @@ function ReviewRetouch({match, history}) {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/movie/review/detail/${reviewIdx}`,
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/movie/review/detail/${reviewIdx}`,
         { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 setTitle(response.data.selectReviewList.title);
@@ -47,7 +47,7 @@ function ReviewRetouch({match, history}) {
 
   
     const handlerClickUpdate = () => {
-        axios.put(`http://localhost:8080/movie/review/update/${reviewIdx}`,  // 요청 URL
+        axios.put(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/movie/review/update/${reviewIdx}`,  // 요청 URL
                     { "title": title, "contents": contents },
                     { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })           // 요청 본문을 통해서 서버로 전달할 값
             .then(response => {                                         // 200번대 응답코드가 반환되는 경우

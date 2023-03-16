@@ -8,7 +8,7 @@ const SignUp = ({history}) => {
 
     const handlerOnClick = e =>{
         if(confrimMessage == null && Pmessage == null && Emassage == null && userId != null){
-        axios.post('http://localhost:8080/api/regist',{userId,userPassword,phoneNumber,userEmail,userName})
+        axios.post(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/regist`,{userId,userPassword,phoneNumber,userEmail,userName})
             .then(respone => {
                 console.log(respone)
             if(respone.data){

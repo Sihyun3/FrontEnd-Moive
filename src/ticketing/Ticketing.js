@@ -1,11 +1,6 @@
 import './ticketing_3.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { TbSquare1 } from 'react-icons/tb';
-import { TbSquare2 } from 'react-icons/tb';
-import { TbSquare3 } from 'react-icons/tb';
-import { TbSquare4 } from 'react-icons/tb';
-import { TbSquare5 } from 'react-icons/tb';
 import Seating2 from './Seating2';
 
 import './seating2.css';
@@ -25,7 +20,7 @@ function Ticketing({history}) {
       history.push("/login");
       return;
     }
-        axios.get(`http://localhost:8080/api/movie`,
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/movie`,
         { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 console.log(response.data)
@@ -38,7 +33,7 @@ function Ticketing({history}) {
     }, []);
     const handlerMovie = (e) => {
         e.preventDefault();
-        axios.get(`http://localhost:8080/api/reservationdate/${e.target.value}`,
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/reservationdate/${e.target.value}`,
         { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 console.log(response.data)
@@ -51,7 +46,7 @@ function Ticketing({history}) {
     const handlerDate = (e) => {
         console.log(e.target.value);
         e.preventDefault();
-        axios.get(`http://localhost:8080/api/reservedseat/${e.target.value}`, 
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/reservedseat/${e.target.value}`, 
          { headers: { 'Authorization': `Bearer ${sessionStorage.getItem('token')}` } })
             .then(response => {
                 setReservedSeat(response.data);

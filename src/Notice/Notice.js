@@ -11,7 +11,7 @@ function Notice() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/api/listAnnouncement`)
+        axios.get(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/listAnnouncement`)
             .then(response => {
                 console.log(response.data)
                 setDatas(response.data);

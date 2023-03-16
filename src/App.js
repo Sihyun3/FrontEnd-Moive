@@ -51,7 +51,7 @@ function App() {
        <Route path='/annoucemount/:announcementIdx' component={NoticeDetail} exact={true}/>
       {/* 예시 */}
       {/* <Rating/>  */}
-      <Route path='/admin' component={Admin} exact={true}/>
+        <Route path='/adminpage' component={Admin} exact={true}/>
       <Footer />
 
 

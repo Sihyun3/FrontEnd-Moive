@@ -11,7 +11,7 @@ function Seating2({reservedSeat,setSelectSeat,selectSeat,movieIdx,selectDate,his
 
     const post=()=>{
     
-    axios.post('http://localhost:8080/api/reservation/',
+    axios.post(`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/reservation/`,
     {
         "reservationDto":  {"reservationDate":selectDate,"movieIdx":movieIdx},
             "seatDto":{"registSeat":selectSeat}
@@ -81,7 +81,6 @@ function Seating2({reservedSeat,setSelectSeat,selectSeat,movieIdx,selectDate,his
     const changeColor =(e)=>{
         console.log(e);
         e.a({fontSize:"60px",color:"red",pointerEvents:'none'})
-        
         setSelectSeat(selectSeat=>[...selectSeat,e.b]);
     }
   
