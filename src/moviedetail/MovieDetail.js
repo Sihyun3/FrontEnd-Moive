@@ -19,7 +19,7 @@ const MovieDetail = ({ match }) => {
     const [nickName, setNickName] = useState('');
     const { movieIdx } = match.params;
     const [rating, setRating] = useState(3);
-
+    const image = `http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/api/getImage/`;
     // console.log(">>>>>>>>>>>>>>");
     // console.log(movieIdx);
 
@@ -80,7 +80,7 @@ const MovieDetail = ({ match }) => {
 
                         {/* 영화 포스터 부분 (todo) */}
                         <div className="movie-left">
-                        <img style={{width:"280px",height:"400px"}} src={`http://${process.env.REACT_APP_IP}:${process.env.REACT_APP_PORT}/img/`+poster}/>
+                        <img style={{width:"280px",height:"400px"}} src={image +poster}/>
                         </div>
 
                         <div className="movie-right">
